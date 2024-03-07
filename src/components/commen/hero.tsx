@@ -2,24 +2,40 @@ import Image from "next/image";
 import React from "react";
 import Container from "./Container";
 import { Ayah } from "@/types";
+import { twMerge } from "tailwind-merge";
 
 interface HeroProps {
   ayat: Ayah[];
+  randomPage: number;
 }
 
 export default function Hero(props: HeroProps) {
-  const ayatText = props.ayat.map((ayah: Ayah) => ayah.text_indopak).join(" ");
+  const ayatText = props.ayat.reduce((acc: string, ayah: Ayah, i: number) => {
+    return (
+      acc +
+      ayah.text_indopak +
+      ` -${parseInt(ayah.verse_key.split(":")[1]).toLocaleString("ar")}- `
+    );
+  }, "");
+
   return (
     <div className="relative ">
-      <div className="relative h-screen w-screen -mt-[114px] ">
+      <div className="relative h-screen w-screen -mt-[74px] ">
         <Image fill className="" src="/river-image.jpg" alt="River image" />
         <div className="absolute  z-10 inset-0 bg-black/70"></div>
       </div>
-      <Container>
-        <h2 className="text-6xl absolute top-1/2 z-20 line-clamp-5 leading-[100px] -translate-y-1/2 w-auto max-w-7xl tracking-wider text-white">
-          {ayatText}
-        </h2>
-      </Container>
+      <div
+        className={twMerge(
+          "text-xl md:text-2xl lg:text-3xl font-bold absolute top-1/2 z-20  -translate-y-1/2 tracking-wider px-4 md:px-20 text-center py-2 text-white",
+          "leading-8 sm:leading-9 md:leading-[40px] lg:leading-[60px] "
+        )}
+      >
+        <h2 className="mb-5 md:mb-10"> ﴿ أعوذ بالله من الشيطان الرجيم ﴾</h2>
+        <h2>{ayatText}</h2>
+        <h5 className="text-sm text-left md:ml-40">
+          (ص {props.randomPage.toLocaleString("ar")} )
+        </h5>
+      </div>
     </div>
   );
 }

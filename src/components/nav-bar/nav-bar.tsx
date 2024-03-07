@@ -15,12 +15,15 @@ import { Search } from "lucide-react";
 
 export default function Header() {
   return (
-    <Navbar shouldHideOnScroll className="py-6 justify-evenly shadow">
+    <Navbar
+      shouldHideOnScroll
+      className="py-1 shadow-none bg-foreground-50/90 m-0"
+    >
       <NavbarBrand>
         <Link href="/">
           <Image
-            width={90}
-            height={90}
+            width={70}
+            height={70}
             className="rounded-full"
             src="/Iqra.jpg"
             alt="The logo Iqra"
@@ -44,12 +47,12 @@ export default function Header() {
         className="font-bold gap-x-10 text-primary-700/75"
       >
         <NavbarItem>
-          <Link className="text-3xl" href="quran">
+          <Link className="text-xl" href="quran">
             القراءن الكريم
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link className="text-3xl" href="hadith">
+          <Link className="text-xl" href="hadith">
             الحديث الشريف
           </Link>
         </NavbarItem>
