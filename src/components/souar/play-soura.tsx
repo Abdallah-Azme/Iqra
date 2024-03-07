@@ -1,38 +1,25 @@
 "use client";
 
-import Crunker from "crunker";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type PlaySouraProps = {
-  allSurahLinks: string[];
+  souraId?: number;
+  currentShakih: string;
 };
 
 export default function PlaySoura(props: PlaySouraProps) {
-  const [currentAyahIndex, setCurrentAyahIndex] = useState(0);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const playNextAyah = () => {
-    if (currentAyahIndex < props.allSurahLinks.length - 1) {
-      setCurrentAyahIndex(currentAyahIndex + 1);
-    } else {
-      setCurrentAyahIndex(0);
-    }
-  };
+  const ref = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.play();
+    if (ref.current !== null) {
+      ref.current.src = `https://cdn.islamic.network/quran/audio-surah/128/${props.currentShakih}/${props.souraId}.mp3`;
+      console.log(ref.current.src);
     }
-  }, [currentAyahIndex]);
+  }, [props.currentShakih, props.souraId]);
 
   return (
     <div className="">
-      <audio
-        className="w-[350px] rounded-none"
-        ref={audioRef}
-        controls
-        src={props.allSurahLinks[currentAyahIndex]}
-        onEnded={playNextAyah}
-      ></audio>
+      <audio ref={ref} className="w-[350px] rounded-none" controls></audio>
     </div>
   );
 }

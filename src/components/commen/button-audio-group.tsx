@@ -1,17 +1,24 @@
-import { nameOfSheikhs } from "@/app/data";
-import React from "react";
-import { Button, ButtonGroup } from "@nextui-org/react";
+import { nameOfSheikhs } from "@/data";
 
-export default function ButtonAudioGroup() {
-  const audioGroup = nameOfSheikhs.map((nameOfSheikh) => (
-    <Button
-      className="mx-1 my-2 text-md  text-white"
-      size="sm"
+type ButtonAudioGroupProps = {
+  setCurrentShakih: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export default function ButtonAudioGroup({
+  setCurrentShakih,
+}: ButtonAudioGroupProps) {
+  // const onClick = (newShakih) => {
+  //   setCurrentShakih(newShakih);
+  // };
+  const audioGroup = nameOfSheikhs.map((nameOfSheikh, i) => (
+    <button
+      onClick={() => setCurrentShakih(nameOfSheikh.identifier)}
+      className="mx-1 p-1 my-1 text-[12px] w-auto bg-white/30 rounded-xl  text-white"
       color="success"
-      key={nameOfSheikh.name}
+      key={i}
     >
-      {nameOfSheikh.name}
-    </Button>
+      {nameOfSheikh.arabicName || nameOfSheikh.name}
+    </button>
   ));
   return <div>{audioGroup}</div>;
 }
