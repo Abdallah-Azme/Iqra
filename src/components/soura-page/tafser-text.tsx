@@ -31,9 +31,9 @@ export default async function TafserText({
   const tafsers: TafserAyah[] = await fetchDataWithRetry(arrayOfPromises, 500);
   console.log(tafsers);
   const tafsersText = tafsers.reduce(
-    (acc, tafserAyah) =>
-      `${acc} - ${tafserAyah?.ayah_number?.toLocaleString("ar")} - ${
-        tafserAyah?.text
+    (acc, tafserAyah, i) =>
+      `${acc} - ${`${(i + 1).toLocaleString("ar")}`} - ${
+        tafserAyah?.text || ` --- فشل فى تحميل تفسير هذه الآية الكريمة --- `
       } `,
     " "
   );
@@ -42,7 +42,7 @@ export default async function TafserText({
   return (
     <HeadingParagraph
       id={id}
-      headingText={`تفسير  ${souraName}`}
+      headingText={`التفسير الميسر ل${souraName}`}
       pargraphText={tafsersText}
     />
   );
