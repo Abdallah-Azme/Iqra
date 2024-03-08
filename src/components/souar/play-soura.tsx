@@ -18,7 +18,12 @@ export default function PlaySoura(props: PlaySouraProps) {
 
   return (
     <div className="">
-      <audio ref={ref} className="w-[350px] rounded-none" controls></audio>
+      <audio
+        ref={ref}
+        autoPlay
+        className="w-[250px] md:w-[350px] rounded-none"
+        controls
+      ></audio>
     </div>
   );
 }

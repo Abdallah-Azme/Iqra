@@ -39,7 +39,7 @@ export default function HeroAudioCard({
             <h2 className="text-5xl absolute -translate-y-1/2 top-1/3 p-4 bg-white/10 drop-shadow-2xl rounded-full z-10 text-zinc-900/85">
               {souraName}
             </h2>
-            <h4 className="text-2xl text-white absolute bottom-0 mb-16">{`تلاوة عطرة بصوت الشيخ: ${
+            <h4 className="text-sm sm:text-lg md:text-2xl text-white absolute bottom-0 mb-16">{` تلاوة عطرة بصوت فضيلة الشيخ : ${
               nameOfSheikhs.find(
                 (sheikh) => sheikh.identifier === currentShakih
               )?.arabicName

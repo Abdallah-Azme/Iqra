@@ -28,7 +28,7 @@ export default async function TafserText({
   }
 
   // get tafser surah
-  const tafsers: TafserAyah[] = await fetchDataWithRetry(arrayOfPromises, 500);
+  const tafsers: TafserAyah[] = await fetchDataWithRetry(arrayOfPromises, 5);
   console.log(tafsers);
   const tafsersText = tafsers.reduce(
     (acc, tafserAyah, i) =>
