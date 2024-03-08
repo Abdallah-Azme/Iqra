@@ -1,6 +1,6 @@
 "use server";
 
-export async function getRandomAyah(pageNumber: number) {
+export async function getRandomPage(pageNumber: number) {
   try {
     const res = await fetch(
       `https://api.quran.com/api/v4/quran/verses/indopak?page_number=${pageNumber}`,
@@ -33,17 +33,17 @@ export async function getSurahText(surahNumber: number) {
   }
 }
 
-// export async function getNamesOfSheikhs() {
-//   try {
-//     const res = await fetch(
-//       `https://api.alquran.cloud/v1/edition?format=audio&language=ar&type=versebyverse`,
-//       config
-//     );
-//     return res.json();
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+export async function getTafserSurah(surahNumber: number, numberOfAya: number) {
+  try {
+    const res = await fetch(
+      `http://api.quran-tafseer.com/tafseer/1/${surahNumber}/${numberOfAya}`,
+      config
+    );
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export async function getSurahAudio(
   numberOfSoura: number = 1,

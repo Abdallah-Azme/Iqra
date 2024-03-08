@@ -7,9 +7,6 @@ type ButtonAudioGroupProps = {
 export default function ButtonAudioGroup({
   setCurrentShakih,
 }: ButtonAudioGroupProps) {
-  // const onClick = (newShakih) => {
-  //   setCurrentShakih(newShakih);
-  // };
   const audioGroup = nameOfSheikhs.map((nameOfSheikh, i) => (
     <button
       onClick={() => setCurrentShakih(nameOfSheikh.identifier)}

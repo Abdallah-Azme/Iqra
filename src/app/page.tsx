@@ -1,16 +1,16 @@
-import { getAllSourName, getRandomAyah } from "@/actions";
+import { getAllSourName, getRandomPage } from "@/actions";
 
 import Hero from "@/components/commen/hero";
 import SourCardContainer from "@/components/souar/soura-card-container";
 import { Soura } from "@/types";
-import { randomPageNumber } from "@/utils/random-page";
+import { randomPageNumber } from "@/utils";
 
 export default async function Home() {
   const res = await getAllSourName();
   const sour: Soura[] = res.data;
   const randomPage = randomPageNumber();
 
-  const data = await getRandomAyah(randomPage);
+  const data = await getRandomPage(randomPage);
   const ayat = data.verses;
   return (
     <>

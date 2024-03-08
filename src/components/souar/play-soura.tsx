@@ -13,7 +13,6 @@ export default function PlaySoura(props: PlaySouraProps) {
   useEffect(() => {
     if (ref.current !== null) {
       ref.current.src = `https://cdn.islamic.network/quran/audio-surah/128/${props.currentShakih}/${props.souraId}.mp3`;
-      console.log(ref.current.src);
     }
   }, [props.currentShakih, props.souraId]);
 

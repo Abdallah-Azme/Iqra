@@ -1,7 +1,23 @@
-import { getSurahText } from "@/actions";
 import Container from "@/components/commen/Container";
-import HeroAudioCard from "@/components/commen/hero-audio-card";
-import { AyahText } from "@/types";
+import NavLinks from "@/components/commen/nav-links";
+import dynamic from "next/dynamic";
+
+const TafserText = dynamic(
+  () => import("@/components/soura-page/tafser-text"),
+  {
+    ssr: false,
+  }
+);
+const SouraText = dynamic(() => import("@/components/soura-page/soura-text"), {
+  ssr: false,
+});
+
+const HeroAudioCard = dynamic(
+  () => import("@/components/commen/hero-audio-card"),
+  {
+    ssr: false,
+  }
+);
 
 type SouraPageProps = {
   params: {
@@ -17,23 +33,24 @@ export default async function SouraPage({
   const souraId = parseInt(params.souraId);
   const souraName = searchParams.soura;
 
-  //get surah text
-  const res = await getSurahText(souraId);
-  const surahArray: AyahText[] = res.data.ayahs;
-
-  const souraText = surahArray.reduce(
-    (acc, ayah) =>
-      `${acc} ${ayah.text} - ${ayah.numberInSurah.toLocaleString("ar")} - `,
-    " "
-  );
-
   return (
     <div className="bg-gradient-radial from-[#2C5364] via-[#203A43] to-[#12262c]">
       <Container className="pt-10">
-        <HeroAudioCard souraId={souraId} souraName={souraName} />
-        <div className="text-white text-center text-lg mt-10">
-          <p className="">{souraText}</p>
+        {/* <NavLinks souraName={souraName} /> */}
+
+        <HeroAudioCard
+          id="audio-player"
+          souraId={souraId}
+          souraName={souraName}
+        />
+        <div id="soura-text">
+          <SouraText
+            id="soura-text"
+            headingText={souraName}
+            souraId={souraId}
+          />
         </div>
+        <TafserText id="tafser-text" souraId={souraId} souraName={souraName} />
       </Container>
     </div>
   );
