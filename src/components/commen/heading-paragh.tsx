@@ -11,7 +11,7 @@ export default function HeadingParagraph({
   id,
 }: HeadingParagraphProps) {
   return (
-    <div id={id} className="text-white text-center text-lg mt-10">
+    <div id={id} className="text-white text-center text-lg ">
       <h3 className="text-4xl text-white my-5 inline-flex rounded-3xl p-5 tracking-wider leading-10 bg-slate-500/60 ">
         {headingText}
       </h3>

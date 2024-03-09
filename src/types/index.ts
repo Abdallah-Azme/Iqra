@@ -45,3 +45,35 @@ export type TafserAyah = {
   ayah_number: number;
   text: string;
 };
+
+export type HadithItem = {
+  id: 25;
+  hadithNumber: string;
+  englishNarrator: string;
+  hadithEnglish: string;
+  hadithUrdu: string;
+  hadithArabic: string;
+  headingArabic: string;
+  headingUrdu: string;
+  headingEnglish: string;
+  chapterId: string;
+  bookSlug: string;
+  volume: string;
+  status: string;
+  book: {
+    id: 1;
+    bookName: string;
+    writerName: string;
+    aboutWriter: null;
+    writerDeath: string;
+    bookSlug: string;
+  };
+  chapter: {
+    id: 2;
+    chapterNumber: string;
+    chapterEnglish: string;
+    chapterUrdu: string;
+    chapterArabic: string;
+    bookSlug: string;
+  };
+};

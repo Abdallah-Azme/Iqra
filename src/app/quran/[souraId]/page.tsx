@@ -1,5 +1,4 @@
 import Container from "@/components/commen/Container";
-import NavLinks from "@/components/commen/nav-links";
 import dynamic from "next/dynamic";
 
 const TafserText = dynamic(
@@ -34,23 +33,21 @@ export default async function SouraPage({
   const souraName = searchParams.soura;
 
   return (
-    <div className="bg-gradient-radial from-[#2C5364] via-[#203A43] to-[#12262c]">
-      <Container className="pt-10">
-        {/* <NavLinks souraName={souraName} /> */}
-
+    <div className="bg-radial-gradient">
+      <Container className="pt-2">
         <HeroAudioCard
           id="audio-player"
           souraId={souraId}
           souraName={souraName}
         />
-        <div id="soura-text">
+        <div className="py-5" id="soura-text">
           <SouraText
             id="soura-text"
             headingText={souraName}
             souraId={souraId}
           />
         </div>
-        <TafserText id="tafser-text" souraId={souraId} souraName={souraName} />
+        {/* <TafserText id="tafser-text" souraId={souraId} souraName={souraName} /> */}
       </Container>
     </div>
   );

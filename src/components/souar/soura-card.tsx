@@ -1,9 +1,7 @@
-import { getSurahAudio } from "@/actions";
-import { AyahAudio, Soura } from "@/types";
-import { Card, CardBody } from "@nextui-org/react";
+import { Soura } from "@/types";
+import { PlayCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { PlayCircle } from "lucide-react";
 
 type SouraCardProps = {
   soura: Soura;
@@ -11,19 +9,19 @@ type SouraCardProps = {
 
 export default async function SouraCard({ soura }: SouraCardProps) {
   return (
-    <div className="col-span-4 lg:col-span-3 xl:col-span-2 flex group">
+    <div className="col-span-5 lg:col-span-3 xl:col-span-2 flex group">
       <Link
         href={`/quran/${soura.number}?soura=${soura.name}`}
         className=" justify-center items-center"
       >
-        <div className=" text-center text-3xl">
+        <div className="text-md text-center md:text-3xl">
           <div className="relative group-hover:scale-105 transition ">
             <Image
               src="/quran-photo-1.jpg"
               alt="Quran photo"
               width={150}
               height={150}
-              className="rounded-2xl "
+              className=" "
             />
             <div className="absolute rounded-2xl inset-0 bg-gradient-to-t from-gray-800 opacity-40 group-hover:opacity-85 to-stone-900"></div>
             <PlayCircle
@@ -32,7 +30,7 @@ export default async function SouraCard({ soura }: SouraCardProps) {
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-white">
-                <h3 className="text-xl lg:text-2xl">{soura.name}</h3>
+                <h3 className="text-md lg:text-2xl">{soura.name}</h3>
                 <h5 className="text-sm ">
                   {soura.revelationType === "Meccan"
                     ? " سورة مكية"
@@ -49,10 +47,3 @@ export default async function SouraCard({ soura }: SouraCardProps) {
     </div>
   );
 }
-
-// <div className="relative ">
-
-// </div>
-// <h2 className="text-3xl absolute -translate-y-1/2 top-1/2 text-white">
-//   {souraName}
-// </h2>

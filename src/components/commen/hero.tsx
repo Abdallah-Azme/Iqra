@@ -19,15 +19,15 @@ export default function Hero(props: HeroProps) {
   }, "");
 
   return (
-    <div className="relative ">
-      <div className="relative h-screen w-screen -mt-[74px] ">
+    <div className=" ">
+      <div className="relative h-screen w-screen -z-10 -mt-[78PX]">
         <Image fill className="" src="/river-image.jpg" alt="River image" />
         <div className="absolute  z-10 inset-0 bg-black/70"></div>
       </div>
       <div
         className={twMerge(
-          "text-xl md:text-2xl lg:text-3xl font-bold absolute top-1/2 z-20  -translate-y-1/2 tracking-wider px-4 md:px-20 text-center py-2 text-white",
-          "leading-8 sm:leading-9 md:leading-[40px] lg:leading-[60px] "
+          "text-sm md:text-xl lg:text-2xl font-bold absolute top-1/2 z-20  -translate-y-1/2 tracking-wider px-4 md:px-20 text-center py-2 text-white",
+          "leading-6 sm:leading-9 md:leading-[40px] lg:leading-[60px] "
         )}
       >
         <h2 className="mb-5 md:mb-10"> ﴿ أعوذ بالله من الشيطان الرجيم ﴾</h2>

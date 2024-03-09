@@ -23,13 +23,11 @@ export default async function TafserText({
     i <= references.find((ref) => ref.number === souraId)?.numberOfAyahs!;
     i++
   ) {
-    console.log(souraId);
     arrayOfPromises.push(getTafserSurah(souraId, i));
   }
 
   // get tafser surah
-  const tafsers: TafserAyah[] = await fetchDataWithRetry(arrayOfPromises, 5);
-  console.log(tafsers);
+  const tafsers: TafserAyah[] = await fetchDataWithRetry(arrayOfPromises, 3);
   const tafsersText = tafsers.reduce(
     (acc, tafserAyah, i) =>
       `${acc} - ${`${(i + 1).toLocaleString("ar")}`} - ${
@@ -37,8 +35,6 @@ export default async function TafserText({
       } `,
     " "
   );
-
-  console.log(tafsersText);
   return (
     <HeadingParagraph
       id={id}

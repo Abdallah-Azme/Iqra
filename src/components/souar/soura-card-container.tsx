@@ -11,7 +11,7 @@ export default async function SourCardContainer({ sour }: SouraCardProps) {
     <SouraCard soura={soura} key={soura.number} />
   ));
   return (
-    <div className="grid mt-10 items-center grid-cols-16 gap-4 justify-center container mx-auto px-2.5 md:px-20">
+    <div className="grid space-x-4 space-y-4 mt-10 items-center grid-cols-16 gap-4 justify-center container mx-auto px-2.5 md:px-20">
       {allSour}
     </div>
   );

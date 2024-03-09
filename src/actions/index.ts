@@ -1,5 +1,7 @@
 "use server";
 
+import { HadithItem } from "@/types";
+
 export async function getRandomPage(pageNumber: number) {
   try {
     const res = await fetch(
@@ -60,6 +62,18 @@ export async function getSurahAudio(
   } catch (error) {
     console.error(error);
   }
+}
+
+// get hadith
+export async function getHadithList(page: number): Promise<HadithItem[]> {
+  // Fetch data from your API endpoint using page parameter for pagination
+  const response = await fetch(
+    `https://hadithapi.com/api/hadiths?apiKey=$2y$10$GkaQNEv3r8gh6Rg1bsA9bOmxvIrGJTH7nmv9utsmYS9pTf0oFSXe&book=sahih-bukhari&page=${page}`,
+    config
+  );
+  const res = await response.json();
+  const resData = res.hadiths.data;
+  return resData;
 }
 
 const config = {

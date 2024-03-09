@@ -22,7 +22,7 @@ export default function HeroAudioCard({
     <div>
       <div
         id={id}
-        className="grid grid-cols-6 lg:grid-cols-12 mt-14 p-10 justify-center items-center bg-white/10 rounded-3xl"
+        className="grid grid-cols-6 lg:grid-cols-12 mt-4 p-5 justify-center items-center bg-white/10 rounded-3xl"
       >
         <div className="col-span-6">
           <div className="relative text-center flex flex-col items-center ">
@@ -52,8 +52,11 @@ export default function HeroAudioCard({
         <div className="col-span-6">
           <div className="flex flex-col w-auto justify-center">
             <div className="">
-              <h4 className="text-xl mt-5 text-white">{`${souraName} متوفرة بأصوات الشيوخ :`}</h4>
-              <ButtonAudioGroup setCurrentShakih={setCurrentShakih} />
+              <h4 className="text-xl mb-4 pt-2 text-white">{`${souraName} متوفرة بأصوات الشيوخ :`}</h4>
+              <ButtonAudioGroup
+                setCurrentShakih={setCurrentShakih}
+                currentShakih={currentShakih}
+              />
             </div>
           </div>
         </div>

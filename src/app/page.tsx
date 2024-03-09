@@ -15,8 +15,11 @@ export default async function Home() {
   return (
     <>
       <Hero ayat={ayat} randomPage={randomPage} />
-      <div className="bg-gradient-radial from-[#2C5364] via-[#203A43] text-center to-[#0F2027]">
-        <h3 className="text-center text-white md:inline-flex md:px-10 text-3xl md:rounded-3xl mt-5 bg-gradient-to-l from-slate-800 to-slate-950 p-5">
+      <div className="bg-radial-gradient text-center pt-2">
+        <h3
+          id="quran"
+          className="text-4xl text-white my-5 inline-flex rounded-3xl p-5 tracking-wider leading-10 bg-slate-500/60"
+        >
           القراءن الكريم
         </h3>
         <SourCardContainer sour={sour} />
