@@ -7,15 +7,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getHadithList } from "@/actions";
-import { useEffect, useState } from "react";
+import { use, useCallback, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 
 export default function HadithAccordion() {
   const [isLoading, setIsLoading] = useState(false);
-  const [numberOfPage, setNumberOfPage] = useState(1);
+  const [numberOfPage, setNumberOfPage] = useState(2);
   const [hadithList, setHadithList] = useState<HadithItem[]>([]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setIsLoading(true);
       const newData = await getHadithList(numberOfPage);
@@ -26,10 +26,10 @@ export default function HadithAccordion() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [numberOfPage]);
 
   // number of pages of the sahih-bukhari is 302
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
         document.documentElement.offsetHeight &&
@@ -37,18 +37,17 @@ export default function HadithAccordion() {
     ) {
       fetchData();
     }
-  };
+  }, [fetchData, numberOfPage]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   //init data load
   useEffect(() => {
     const initData = async () => {
       const res = await getHadithList(1);
-      console.log(res);
       setHadithList(() => [...res]);
     };
     initData();
@@ -57,25 +56,27 @@ export default function HadithAccordion() {
   return (
     <div className="relative">
       <Accordion collapsible type="single" className="pb-6">
-        {hadithList.map((hadith: HadithItem) => (
-          <AccordionItem key={hadith.id} value={hadith.id.toString()}>
-            <AccordionTrigger className="text-2xl">
-              {hadith.headingArabic}
-              {`${hadith.headingArabic ? ". " : " "} `}
-              {`حديث ${
-                hadith.status === "Sahih"
-                  ? "صحيح"
-                  : hadith.status === "Hasan"
-                  ? "حسن"
-                  : "ضعيف"
-              } رقم ${hadith.hadithNumber} مجلد رقم ${parseInt(
-                hadith.volume
-              ).toLocaleString("ar")} (${hadith.chapter.chapterArabic}) `}
-            </AccordionTrigger>
-            <AccordionContent className="text-2xl pr-5 md:pr-10 xl:pr-20 text-neutral-950">
-              {hadith.hadithArabic}
-            </AccordionContent>
-          </AccordionItem>
+        {hadithList.map((hadith: HadithItem, index) => (
+          <div className="" key={`${hadith.id}-${index}`}>
+            <AccordionItem value={hadith.id.toString()}>
+              <AccordionTrigger className="text-lg  md:text-2xl">
+                {hadith.headingArabic}
+                {`${hadith.headingArabic ? ". " : " "} `}
+                {`حديث ${
+                  hadith.status === "Sahih"
+                    ? "صحيح"
+                    : hadith.status === "Hasan"
+                    ? "حسن"
+                    : "ضعيف"
+                } رقم ${hadith.hadithNumber} مجلد رقم ${parseInt(
+                  hadith.volume
+                ).toLocaleString("ar")} (${hadith.chapter.chapterArabic}) `}
+              </AccordionTrigger>
+              <AccordionContent className="text-lg md:text-2xl pr-5 md:pr-10 xl:pr-20 text-neutral-950">
+                {hadith.hadithArabic}
+              </AccordionContent>
+            </AccordionItem>
+          </div>
         ))}
       </Accordion>
       {hadithList.length === 0 && (
