@@ -78,6 +78,14 @@ export default function HadithAccordion() {
           </AccordionItem>
         ))}
       </Accordion>
+      {hadithList.length === 0 && (
+        <BeatLoader
+          className="absolute bottom-1/2 right-1/2 -translate-x-1/2"
+          color="#36d7b7"
+          size={25}
+          margin={10}
+        />
+      )}
       {isLoading && numberOfPage <= 302 && (
         <BeatLoader
           className="absolute  bottom-4 right-1/2 -translate-x-1/2"
