@@ -1,10 +1,6 @@
 "use server";
-import { getHadithList } from "@/actions";
 import Container from "@/components/commen/Container";
-import InfiniteScroll from "@/components/commen/infinite-scroll";
 import HadithAccordion from "@/components/hadith/hadith-accordion";
-import { HadithItem } from "@/types";
-import React from "react";
 
 export default async function page() {
   return (
