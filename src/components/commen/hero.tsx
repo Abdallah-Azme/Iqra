@@ -21,7 +21,7 @@ export default function Hero(props: HeroProps) {
   return (
     <div className=" ">
       <div className="relative h-screen w-screen -z-10 -mt-[78PX]">
-        <Image fill className="" src="/river-image.jpg" alt="River image" />
+        <Image fill className="" src="/cyan.jpg" alt="River image" />
         <div className="absolute  z-10 inset-0 bg-black/70"></div>
       </div>
       <div
