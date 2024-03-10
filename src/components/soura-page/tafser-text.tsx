@@ -34,8 +34,6 @@ export default function TafserText({
     }
   }, [souraId, countOfAyat]);
 
-  console.log(tafserArray);
-
   const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
