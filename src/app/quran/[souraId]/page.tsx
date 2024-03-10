@@ -33,7 +33,7 @@ export default async function SouraPage({
   const souraName = searchParams.soura;
 
   return (
-    <div className="bg-radial-gradient">
+    <div className="bg-radial-gradient min-h-screen min-w-full">
       <Container className="pt-2">
         <HeroAudioCard
           id="audio-player"

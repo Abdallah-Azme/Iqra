@@ -61,7 +61,7 @@ export default function TafserText({
   );
 
   return (
-    <div className="">
+    <div className="pb-5">
       <HeadingParagraph
         id={id}
         headingText={`التفسير الميسر ل${souraName}`}
