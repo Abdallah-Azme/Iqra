@@ -35,13 +35,14 @@ export async function getSurahText(surahNumber: number) {
   }
 }
 
-export async function getTafserSurah(surahNumber: number, numberOfAya: number) {
+export async function getTafserAyah(surahNumber: number, numberOfAya: number) {
   try {
     const res = await fetch(
       `http://api.quran-tafseer.com/tafseer/1/${surahNumber}/${numberOfAya}`,
       config
     );
-    return res.json();
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.error(error);
   }

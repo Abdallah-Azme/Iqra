@@ -47,7 +47,7 @@ export default async function SouraPage({
             souraId={souraId}
           />
         </div>
-        {/* <TafserText id="tafser-text" souraId={souraId} souraName={souraName} /> */}
+        <TafserText id="tafser-text" souraId={souraId} souraName={souraName} />
       </Container>
     </div>
   );

@@ -1,4 +1,6 @@
 "use client";
+import debounce from "lodash.debounce";
+
 import { HadithItem } from "@/types";
 import {
   Accordion,
@@ -7,7 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getHadithList } from "@/actions";
-import { use, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 
 export default function HadithAccordion() {
@@ -15,7 +17,7 @@ export default function HadithAccordion() {
   const [numberOfPage, setNumberOfPage] = useState(2);
   const [hadithList, setHadithList] = useState<HadithItem[]>([]);
 
-  const fetchData = useCallback(async () => {
+  async function fetchData() {
     try {
       setIsLoading(true);
       const newData = await getHadithList(numberOfPage);
@@ -26,18 +28,22 @@ export default function HadithAccordion() {
     } finally {
       setIsLoading(false);
     }
-  }, [numberOfPage]);
+  }
 
+  // Create a debounced version of fetchData
+  const debouncedFetchData = useCallback(debounce(fetchData, 300), [
+    numberOfPage,
+  ]);
   // number of pages of the sahih-bukhari is 302
   const handleScroll = useCallback(() => {
     if (
-      window.innerHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight &&
+      window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 400 &&
       numberOfPage <= 302
     ) {
-      fetchData();
+      debouncedFetchData();
     }
-  }, [fetchData, numberOfPage]);
+  }, [debouncedFetchData, numberOfPage]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -72,7 +78,7 @@ export default function HadithAccordion() {
                   hadith.volume
                 ).toLocaleString("ar")} (${hadith.chapter.chapterArabic}) `}
               </AccordionTrigger>
-              <AccordionContent className="text-lg md:text-2xl pr-5 md:pr-10 xl:pr-20 text-neutral-950">
+              <AccordionContent className="text-lg md:text-2xl pr-5 md:pr-10 xl:pr-20 text-yellow-200">
                 {hadith.hadithArabic}
               </AccordionContent>
             </AccordionItem>
@@ -81,7 +87,7 @@ export default function HadithAccordion() {
       </Accordion>
       {hadithList.length === 0 && (
         <BeatLoader
-          className="absolute bottom-1/2 right-1/2 -translate-x-1/2"
+          className="absolute bottom-1/2 right-1/2 translate-x-1/2"
           color="#36d7b7"
           size={25}
           margin={10}
@@ -89,7 +95,7 @@ export default function HadithAccordion() {
       )}
       {isLoading && numberOfPage <= 302 && (
         <BeatLoader
-          className="absolute  bottom-4 right-1/2 -translate-x-1/2"
+          className="absolute  bottom-4 right-1/2 translate-x-1/2"
           color="#36d7b7"
           size={25}
           margin={10}
